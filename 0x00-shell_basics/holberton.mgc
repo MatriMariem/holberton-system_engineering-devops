@@ -1,3 +1,4 @@
+#!/bin/bash
 $ echo "0 string HOLBERTON it is holberton data file" > holberton
 $ file -C -m holberton
 $ ls *.mgc
