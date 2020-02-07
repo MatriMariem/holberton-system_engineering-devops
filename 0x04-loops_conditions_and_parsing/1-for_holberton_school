@@ -2,5 +2,6 @@
 # This script is displaying "Holberton School" 10 times
 ((i))
 for i in {1..10}
-	do echo "Holberton School"
-done
+	do
+		echo "Holberton School"
+	done
