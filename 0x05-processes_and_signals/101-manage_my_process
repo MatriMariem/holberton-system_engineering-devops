@@ -10,12 +10,12 @@ case "$1" in
     echo "manage_my_process started"
     ;;
   stop)
-    kill $pid
+    kill "$pid"
     sudo rm -rf /var/run/my_process.pid
     echo "manage_my_process stopped"
     ;;
   restart)
-    kill $pid
+    kill "$pid"
     sudo rm -rf /var/run/my_process.pid
     ./manage_my_process &
     echo "$pid" > "/var/run/my_process.pid"
