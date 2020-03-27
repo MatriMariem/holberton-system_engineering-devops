@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# a Bash script that installs nginx on our web-01 server
+# /redirect_me is redirecting to another page
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+myc="\\\terror_page 404 /404.html;"
+st="location / {"
+sudo sed -i "0,/$st/{s/$st/$st$myc/}" /etc/nginx/sites-available/default
+sudo service nginx restart
