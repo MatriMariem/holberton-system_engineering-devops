@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 # script to install Apache and run it
-sudo apt-get -y update
-sudo apt-get -y install apache2
+sudo system start apache2
