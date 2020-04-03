@@ -3,10 +3,11 @@
 add-apt-repository -y ppa:vbernat/haproxy-1.8
 sudo apt-get -y update
 sudo apt-get -y install haproxy
+sudo service haproxy start
 sudo sed -i "$ a ENABLED=1" /etc/default/haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
 sudo sed -i "$ a listen 1092-lb-01\n\tbalance roundrobin\n" /etc/haproxy/haproxy.cfg
 sudo sed -i "$ a \tbind *:80\n\tmode http\n" /etc/haproxy/haproxy.cfg
 sudo sed -i "$ a \toption httpclose\n\toption forwardfor\n" /etc/haproxy/haproxy.cfg
 sudo sed -i "$ a \tserver 1092-web-01 34.74.120.150:80 check\n\tserver 1092-web-02 54.173.196.75:80 check\n" /etc/haproxy/haproxy.cfg
-sudo service haproxy start
+sudo service haproxy restart
