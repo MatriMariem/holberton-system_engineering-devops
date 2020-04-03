@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on my lb-01 server
+sudo apt-get -y update
+sudo apt-get -y install haproxy=1.6.\*
+echo "ENABLED=1" >> sudo tee /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+echo "listen 1092-lb-01\n" >> sudo tee /etc/haproxy/haproxy.cfg
+echo "\tbind *:80\n\tmode http\n" >> sudo tee /etc/haproxy/haproxy.cfg
+echo "\toption httpclose\n\toption forwardfor\n" >> sudo tee /etc/haproxy/haproxy.cfg
+echo "\tserver 1092-web-01 34.74.120.150:80 check\n\tserver 1092-web-02 54.173.196.75:80 check\n" >> sudo tee /etc/haproxy/haproxy.cfg
+sudo service haproxy start
