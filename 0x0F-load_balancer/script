@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-st="http {"
-hostname=`cat testhost`
-myc="\n\tadd_header X-Served-By \"$hostname\";"
-sudo sed "0,/$st/{s/$st/$st$myc/}" test

@@ -23,7 +23,7 @@ sudo sed -i "43i $new_config" $file
 # add a custom http header
 
 st="http {"
-hostname=`cat /etc/hostname`
+hostname=$(cat /etc/hostname)
 myc="\n\tadd_header X-Served-By \"$hostname\";"
 sudo sed -i "0,/$st/{s/$st/$st$myc/}" /etc/nginx/nginx.conf
 
