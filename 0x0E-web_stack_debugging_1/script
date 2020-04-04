@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# commands to debug the container
-sed -i 's/8080/80/' test
-###sudo sed -i "0,/8080/{s/8080/80/}" test
