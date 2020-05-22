@@ -17,6 +17,8 @@ if __name__ == '__main__':
         wr = csv.writer(f, delimiter=',')
         for item in r2.json():
             if item.get("userId") == int(sys.argv[1]):
-                line = [item.get("userId"), username, str(item.get("completed")), item.get('title')]
+                line = [item.get("userId"),
+                        username,
+                        str(item.get("completed")),
+                        item.get('title')]
                 wr.writerow(line)
-
