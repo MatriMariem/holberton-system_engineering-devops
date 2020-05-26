@@ -15,12 +15,15 @@ if __name__ == '__main__':
             data[item.get('userId')] = []
         url = 'https://jsonplaceholder.typicode.com/users/'\
               + str(item.get('userId'))
-        username = requests.get(url).json().get('username')
-        d = {'task': item.get('title'),
-             'completed': item.get('completed'),
-             'username': username}
-        data[item.get('userId')].append(d)
-
+        r = requests.get(url)
+        if r.status_code == 200:
+            r = r.json()
+            username = r['username']
+            d = {'task': item.get('title'),
+                 'completed': item.get('completed'),
+                'username': username}
+            data[item.get('userId')].append(d)
+    
     filename = 'todo_all_employees.json'
     with open(filename, 'w') as f:
         json.dump(data, f)
