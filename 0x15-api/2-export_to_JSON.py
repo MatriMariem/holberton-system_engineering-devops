@@ -7,11 +7,11 @@ import sys
 
 
 if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
+    url = 'https://jsonplaceholder.typicode.com/users?id=' + sys.argv[1]
     r = requests.get(url)
     if r.status_code == 200:
         data = {sys.argv[1]: []}
-        username = r.json().get("username")
+        username = r.json()[0].get("username")
         url2 = 'https://jsonplaceholder.typicode.com/todos'
         r2 = requests.get(url2)
         for item in r2.json():
