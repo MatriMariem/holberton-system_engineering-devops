@@ -13,7 +13,7 @@ if __name__ == '__main__':
     for item in r2.json():
         if item.get('userId') not in data:
             data[item.get('userId')] = []
-        url = 'https://jsonplaceholder.typicode.com/users/'\
+        url = 'https://jsonplaceholder.typicode.com/users?id='\
               + str(item.get('userId'))
         r = requests.get(url)
         if r.status_code == 200:
