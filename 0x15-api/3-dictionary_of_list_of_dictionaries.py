@@ -10,9 +10,8 @@ if __name__ == '__main__':
     data = {}
     url2 = 'https://jsonplaceholder.typicode.com/todos'
     r2 = requests.get(url2)
-    for item in r2.json()[:2]:
-        """for item in r2.json():"""
-        if item.get('userId') not in data:
+    for item in r2.json():
+        if str(item.get('userId')) not in data:
             data[str(item.get('userId'))] = []
         url = 'https://jsonplaceholder.typicode.com/users?id='\
               + str(item.get('userId'))
