@@ -12,17 +12,17 @@ if __name__ == '__main__':
     r2 = requests.get(url2)
     for item in r2.json():
         if item.get('userId') not in data:
-            data[item.get('userId')] = []
+            data[str(item.get('userId'))] = []
         url = 'https://jsonplaceholder.typicode.com/users?id='\
               + str(item.get('userId'))
         r = requests.get(url)
         if r.status_code == 200:
             r = r.json()
-            username = r['username']
+            username = r[0]['username']
             d = {'task': item.get('title'),
                  'completed': item.get('completed'),
                 'username': username}
-            data[item.get('userId')].append(d)
+            data[str(item.get('userId'))].append(d)
     
     filename = 'todo_all_employees.json'
     with open(filename, 'w') as f:
