@@ -10,19 +10,20 @@ if __name__ == '__main__':
     data = {}
     url2 = 'https://jsonplaceholder.typicode.com/todos'
     r2 = requests.get(url2)
-    for item in r2.json():
+    for item in r2.json()[:2]:
+        """for item in r2.json():"""
         if item.get('userId') not in data:
             data[str(item.get('userId'))] = []
         url = 'https://jsonplaceholder.typicode.com/users?id='\
               + str(item.get('userId'))
         r = requests.get(url)
-        if r.status_code == 200:
-            r = r.json()
-            username = r[0]['username']
-            d = {'task': item.get('title'),
-                 'completed': item.get('completed'),
-                 'username': username}
-            data[str(item.get('userId'))].append(d)
+        r = r.json()
+        username = r[0]['username']
+        d = {}
+        d['task'] = item.get('title')
+        d['completed'] = item.get('completed')
+        d['username'] = username
+        data[str(item.get('userId'))].append(d)
 
     filename = 'todo_all_employees.json'
     with open(filename, 'w') as f:
