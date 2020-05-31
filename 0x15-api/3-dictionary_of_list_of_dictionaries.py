@@ -21,9 +21,9 @@ if __name__ == '__main__':
             username = r[0]['username']
             d = {'task': item.get('title'),
                  'completed': item.get('completed'),
-                'username': username}
+                 'username': username}
             data[str(item.get('userId'))].append(d)
-    
+
     filename = 'todo_all_employees.json'
     with open(filename, 'w') as f:
         json.dump(data, f)
